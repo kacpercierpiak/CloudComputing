@@ -14,7 +14,7 @@ jobs:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
           api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
           app_name: cloud-computing-api-stg # you aplication name
-          dockerfile_path: 'WebAPI' # set the path to the folder wher the Dokerfile is located
+          dockerfile_path: './WebAPI' # set the path to the folder wher the Dokerfile is located
           options: '' # Docker Build Options
           formation: 'web' # Docker Dyno Formation. By default is web
   build-spa:
@@ -30,7 +30,7 @@ jobs:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
           api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
           app_name: cloud-computing-spa-stg # you aplication name
-          dockerfile_path: 'SPA' # set the path to the folder wher the Dokerfile is located
+          dockerfile_path: './SPA' # set the path to the folder wher the Dokerfile is located
           options: '' # Docker Build Options
           formation: 'web' # Docker Dyno Formation. By default is web
     
