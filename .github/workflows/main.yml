@@ -1,5 +1,5 @@
 name: 'CI' #set whatevername you want to your github job
-on: {} # set the events you would like to trigger this job
+on: push # set the events you would like to trigger this job
 jobs:
   build-api:
     runs-on: ubuntu-latest
