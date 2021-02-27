@@ -3,3 +3,9 @@
 ################################################################################
 
 /.vs/CloudComputing/v16
+/.vs/VSWorkspaceState.json
+/CloudComputing.API/.vs/CloudComputing.API/v16
+/CloudComputing.API/bin/Debug/net5.0
+/CloudComputing.API/obj
+/WebAPI/.vs/WebAPI
+/WebAPI/obj
