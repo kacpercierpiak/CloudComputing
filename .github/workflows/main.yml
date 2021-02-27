@@ -3,21 +3,21 @@ on: push # set the events you would like to trigger this job
 jobs:
   build-api:
     runs-on: ubuntu-latest
-    environment: CloudComputing
+    environment: CloudComputing    
     defaults:
       run:
-        working-directory: ./WebAPI
-    steps:
+        working-directory: WebAPI
+    steps:      
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build, Push and Deploy to Heroku #set the whatever name you want to this step      
+      - name: Build, Push and Deploy to Heroku #set the whatever name you want to this step    
         id: heroku
         uses: jctaveras/heroku-deploy@v2.1.1 # use the latest version of the action
         with:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
           api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
           app_name: cloud-computing-api-stg # you aplication name
-          dockerfile_path: '' # set the path to the folder wher the Dokerfile is located
+          dockerfile_path: 'WebAPI' # set the path to the folder wher the Dokerfile is located
           options: '' # Docker Build Options
           formation: 'web' # Docker Dyno Formation. By default is web
   build-spa:
