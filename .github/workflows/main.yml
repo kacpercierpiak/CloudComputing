@@ -1,6 +1,6 @@
 name: Deploy-Prd
 on:
-  pull_request:
+  push:
     branches:
       - master
 
