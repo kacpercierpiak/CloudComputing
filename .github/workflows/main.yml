@@ -1,6 +1,6 @@
-name: Deploy
+name: Deploy-Prd
 on:
-  push:
+  pull_request:
     branches:
       - master
 
@@ -13,7 +13,7 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "cloud-computing-api-stg" #Must be unique in Heroku
+          heroku_app_name: "cloud-computing-api" #Must be unique in Heroku
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           usedocker: true
           appdir: "WebAPI" # <- This will point to the api folder in your project  
@@ -26,8 +26,9 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "cloud-computing-spa-stg" #Must be unique in Heroku
+          heroku_app_name: "cloud-computing-spa" #Must be unique in Heroku
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           usedocker: true
           appdir: "SPA" # <- This will point to the api folder in your project  
+
     
