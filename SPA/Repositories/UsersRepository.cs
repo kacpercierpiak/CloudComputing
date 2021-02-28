@@ -1,4 +1,4 @@
-﻿using ConfigService.Models.DTO;
+﻿using SPA.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
