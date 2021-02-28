@@ -29,8 +29,5 @@ jobs:
           heroku_app_name: "cloud-computing-spa-stg" #Must be unique in Heroku
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           usedocker: true
-          appdir: "" # <- This will point to the api folder in your project  
-          docker_build_args: |
-            NODE_ENV
-        env:
-          NODE_ENV: production -f SPA/Dockerfile
+          appdir: "SPA" # <- This will point to the api folder in your project  
+          
