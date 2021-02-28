@@ -9,17 +9,14 @@ RUN apt update
 RUN apt install nodejs npm -y
 
 WORKDIR /src
-COPY ["SPA.csproj", ""]
-RUN npm install npm@latest -g
-RUN dotnet restore "./SPA.csproj"
 COPY . .
+RUN npm install npm@latest -g
+RUN dotnet restore "./SPA/SPA.csproj"
 
-
-WORKDIR "/src/."
-RUN dotnet build "SPA.csproj" -c Release -o /app/build
+RUN dotnet build "./SPA/SPA.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "SPA.csproj" -c Release -o /app/publish
+RUN dotnet publish "./SPA/SPA.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
