@@ -1,0 +1,32 @@
+name: Deploy-Prd
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build-api:
+    runs-on: ubuntu-latest
+    environment: CloudComputing
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "cloud-computing-api-stg" #Must be unique in Heroku
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          usedocker: true
+          appdir: "WebAPI" # <- This will point to the api folder in your project  
+  
+  build-spa:
+    runs-on: ubuntu-latest
+    environment: CloudComputing
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "cloud-computing-spa-stg" #Must be unique in Heroku
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          usedocker: true
+          appdir: "SPA" # <- This will point to the api folder in your project  
