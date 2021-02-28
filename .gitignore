@@ -18,3 +18,5 @@
 /ConfigService/bin/Release/netstandard2.0
 /WebAPI.Test/bin/Release/net5.0
 /SPA.Test/bin/Debug/net5.0
+/.vs/CloudComputing/DesignTimeBuild
+/WebAPI/bin/Release/net5.0
