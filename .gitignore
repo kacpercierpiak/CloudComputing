@@ -15,3 +15,5 @@
 /WebAPI/bin/Debug/net5.0
 /WebAPI.Test/bin/Debug/netcoreapp3.1
 /WebAPI.Test/obj
+/ConfigService/bin/Release/netstandard2.0
+/WebAPI.Test/bin/Release/net5.0
