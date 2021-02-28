@@ -1,4 +1,4 @@
-name: Deploy-Prd
+name: Deploy-STG
 on:
   push:
     branches:
