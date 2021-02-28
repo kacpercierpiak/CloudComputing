@@ -9,3 +9,9 @@
 /CloudComputing.API/obj
 /WebAPI/.vs/WebAPI
 /WebAPI/obj
+/ConfigService/bin/Debug/netstandard2.0
+/ConfigService/obj
+/SPA.Test/obj
+/WebAPI/bin/Debug/net5.0
+/WebAPI.Test/bin/Debug/netcoreapp3.1
+/WebAPI.Test/obj
