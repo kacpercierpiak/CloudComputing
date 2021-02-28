@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConfigService.Models.DTO
+namespace SPA.Models.DTO
 {
     public enum FuelTypes 
     { 

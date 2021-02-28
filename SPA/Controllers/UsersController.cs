@@ -1,4 +1,4 @@
-﻿using ConfigService.Models.DTO;
+﻿using SPA.Models.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SPA.Services;

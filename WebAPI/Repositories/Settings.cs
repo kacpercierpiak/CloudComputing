@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConfigService
+namespace WebAPI.Repositories
 {
     public class DbCredentials
     {
