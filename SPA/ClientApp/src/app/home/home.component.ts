@@ -6,17 +6,10 @@ import { environment } from '../../environments/environment.prod';
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent{
   constructor(private http: HttpClient) { }
 
-    ngAfterViewInit(): void {
-      this.http.get(`${environment.urls.api}api/test`).subscribe((data) => {       
-        console.dir(data);    
-      },
-        (error) => console.log(error)
-      );
-
-    }
+  
 }
 
 

@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SPA.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,11 +15,16 @@ namespace SPA.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
+        private readonly IDbService _dbService;
+        public TestController(IDbService dbService)
+        {
+            _dbService = dbService;
+        }
         // GET: api/<TestController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IMongoCollection<BsonDocument> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _dbService.db.GetCollection<BsonDocument>("Users");
         }
 
         // GET api/<TestController>/5

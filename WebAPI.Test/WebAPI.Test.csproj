@@ -19,8 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\WebAPI\WebAPI.csproj" />
-  </ItemGroup>
-
 </Project>
