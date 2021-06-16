@@ -20,12 +20,10 @@ namespace SPA.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
-    {
-        private UsersService _usersService { get; set; }
+    {       
         private IMongoCollection<BsonDocument> _collection { get; set; }
         public UsersController(IDbService dbService)
-        {
-            _usersService = new UsersService();
+        {        
             _collection = dbService.db.GetCollection<BsonDocument>("Users");
         }
         [HttpGet("all")]
@@ -89,23 +87,21 @@ namespace SPA.Controllers
             return Ok();
         }
 
-        [HttpPost("car")]
-        public IActionResult AddCarToUser([FromBody] Car car)
-        {
-            _collection.InsertOneAsync(car.ToBsonDocument());
+        [HttpPut()]
+        public async Task<IActionResult> UpdateUser([FromBody] UserDto user)
+        {           
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(user.OId));           
+            await _collection.ReplaceOneAsync(filter, user.ToBsonDocument());
             return Ok();
         }
 
-
-        public class UserFilter
-         {
-            public  int Timestamp { get; set; }
-            public  int Machine { get; set; }
-            public  short Pid { get; set; }
-            public  int Increment { get; set; }
-    
-         }
-
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(id));
+            await _collection.DeleteOneAsync(filter);
+            return Ok();
+        }
 
     }
 }

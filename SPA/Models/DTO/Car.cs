@@ -13,13 +13,18 @@ namespace SPA.Models.DTO
         Electric
     }
     public class Car
-    {
-        public int Id { get; set; }
+    {    
         public string Brand { get; set; }
         public string Model { get; set; }
         public DateTime ProductionDate { get; set; }
         public string VinNo { get; set; }
         public string Engine { get; set; }
         public FuelTypes FuelType { get; set; }
+        public bool ManualGearbox { get; set; }
+        public string NumberPlate { get; set; }
+        public List<CarHistory> CarHistories { get; set; }
     }
+   
+
+
 }
