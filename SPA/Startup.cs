@@ -23,7 +23,15 @@ namespace SPA
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200");
+                    });
+            });
+
 
             services.AddTransient<IDbService, DBService>();
             // In production, the Angular files will be served from this directory
@@ -52,6 +60,7 @@ namespace SPA
             }
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

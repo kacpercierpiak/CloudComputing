@@ -22,7 +22,7 @@ namespace SPA.Models.DTO
         public FuelTypes FuelType { get; set; }
         public bool ManualGearbox { get; set; }
         public string NumberPlate { get; set; }
-        public List<CarHistory> CarHistories { get; set; }
+        public List<CarHistory>? CarHistories { get; set; }
     }
    
 

@@ -53,6 +53,17 @@ namespace SPA.Controllers
             await _collection.ReplaceOneAsync(filter, t.ToBsonDocument());
             return Ok();
         }
+        [HttpGet("{id}/car/{numberPlate}")]
+        public async Task<ActionResult<Car>> GetCar(string id, string numberPlate)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(id));
+            var t = await (await _collection.FindAsync<UserCar>(filter).ConfigureAwait(false)).FirstOrDefaultAsync();
+            if (t is null || t.Cars is null)
+                return NotFound();
+            
+          
+            return Ok(t.Cars[t.Cars.FindIndex(x => x.NumberPlate == numberPlate)]);
+        }
 
         [HttpPut("{id}/car/{numberPlate}")]
         public async Task<IActionResult> UpdateCar([FromBody] Car car, string id, string numberPlate)

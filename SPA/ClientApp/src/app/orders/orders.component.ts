@@ -3,10 +3,10 @@ import { AfterViewInit, Component } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+  selector: 'app-orders',
+  templateUrl: './orders.component.html',
 })
-export class HomeComponent{
+export class OrdersComponent{
   constructor(private http: HttpClient) { }
 
   
