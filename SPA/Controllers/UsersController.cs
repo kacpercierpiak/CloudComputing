@@ -36,9 +36,9 @@ namespace SPA.Controllers
             var myObject = Newtonsoft.Json.JsonConvert.DeserializeObject<List<UserDto>>(json);
 
 
-            if (myObject.Count > 0)
+         
                 return Ok(myObject);
-            return NotFound();
+          
         }
     
         [HttpGet("{id}")]
@@ -56,26 +56,32 @@ namespace SPA.Controllers
             return NotFound();
         }
         [HttpGet("all/details")]
-        public async Task<ActionResult<List<Object>>> GetAllUsersData()
+        public async Task<ActionResult<IEnumerable<UserCarDto>>> GetAllUsersData()
         {
 
             var t = await _collection.Find(f => true).ToListAsync();
-            var dotNetObjList = t.ConvertAll(BsonTypeMapper.MapToDotNetValue);       
+            var dotNetObjList = t.ConvertAll(BsonTypeMapper.MapToDotNetValue);
 
-            if (dotNetObjList.Count > 0)
-                return Ok(dotNetObjList);
-            return NotFound();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(dotNetObjList);
+
+            var myObject = Newtonsoft.Json.JsonConvert.DeserializeObject<List<UserCarDto>>(json);
+           
+                return Ok(myObject);
+           
         }
 
         [HttpGet("{id}/details")]
-        public async Task<ActionResult<Object>> GetAllUserData(string id)
+        public async Task<ActionResult<UserCarDto>> GetAllUserData(string id)
         {
             var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(id));
             var t = await _collection.Find(filter).ToListAsync();
             var dotNetObjList = t.ConvertAll(BsonTypeMapper.MapToDotNetValue);
-         
-            if (dotNetObjList.Count > 0)
-                return Ok(dotNetObjList[0]);
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(dotNetObjList);
+
+            var myObject = Newtonsoft.Json.JsonConvert.DeserializeObject<List<UserCarDto>>(json);
+
+            if (myObject.Count > 0)
+                return Ok(myObject[0]);
             return NotFound();
         }
 

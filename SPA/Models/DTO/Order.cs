@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,21 +15,30 @@ namespace SPA.Models.DTO
         OnHold,
         Done
     }
-    public class Order : CarHistory
+    public class Order : OrderDto
     {
         [BsonId]
-        public ObjectId _id { get; set; }
-        public ObjectId UserOId { get; set; }
-        public string NumberPlate { get; set; }
+        public ObjectId _id { get; set; }       
+      
+     
+        public new string OId { get => _id.ToString(); set => _ = value; }
+
+    }
+
+    public class OrderDto: CarHistory
+    {
         [BsonIgnore]
-        public string OId { get => _id.ToString(); }
+        [JsonProperty("_id")]
+        public string OId { get; set; }
+        public string UserOId { get; set; }
+        public string CarOId { get; set; }
 
     }
     public class CarHistory
     {
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public Decimal Cost { get; set; }
+        public decimal Cost { get; set; }
         public List<Part> Parts { get; set; }
         public string Comment { get; set; }
         public OrderStatus OrderStatus { get; set; }

@@ -27,27 +27,33 @@ namespace SPA.Controllers
         }
 
         [HttpGet()]
-        public async Task<ActionResult<List<Object>>> GetAllUsersData()
+        public async Task<ActionResult<List<OrderDto>>> GetAllUsersData()
         {
 
             var t = await _collection.Find(f => true).ToListAsync();
             var dotNetObjList = t.ConvertAll(BsonTypeMapper.MapToDotNetValue);
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(dotNetObjList);
 
-            if (dotNetObjList.Count > 0)
-                return Ok(dotNetObjList);
-            return NotFound();
+            var myObject = Newtonsoft.Json.JsonConvert.DeserializeObject<List<OrderDto>>(json);
+
+           
+                return Ok(myObject);
+        
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Object>> GetAllUserData(string id)
+        public async Task<ActionResult<OrderDto>> GetAllUserData(string id)
         {
             var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(id));
             var t = await _collection.Find(filter).ToListAsync();
             var dotNetObjList = t.ConvertAll(BsonTypeMapper.MapToDotNetValue);
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(dotNetObjList);
 
-            if (dotNetObjList.Count > 0)
-                return Ok(dotNetObjList[0]);
-            return NotFound();
+            var myObject = Newtonsoft.Json.JsonConvert.DeserializeObject<OrderDto>(json);
+
+           
+                return Ok(myObject);
+           
         }
 
         [HttpPost()]
@@ -61,7 +67,7 @@ namespace SPA.Controllers
             return Ok();
         }
         [HttpPut()]
-        public async Task<IActionResult> UpdateUser([FromBody] Order order)
+        public async Task<IActionResult> UpdateOrder([FromBody] Order order)
         {
             var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(order.OId));
             await _collection.ReplaceOneAsync(filter, order.ToBsonDocument());
@@ -69,7 +75,7 @@ namespace SPA.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(string id)
+        public async Task<IActionResult> DeleteOrder(string id)
         {
             var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(id));
             await _collection.DeleteOneAsync(filter);

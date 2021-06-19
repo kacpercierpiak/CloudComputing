@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using SPA.Services;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using System;
 
 namespace SPA
 {
@@ -23,6 +24,7 @@ namespace SPA
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(

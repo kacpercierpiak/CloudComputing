@@ -16,7 +16,7 @@ export class AddcarComponent implements OnInit {
   
 
   constructor(private http: HttpClient,  @Inject('BASE_URL') private baseUrl: string,private route: ActivatedRoute,private router: Router) { 
-    this.car = new Car('','',this.fuelTypes.Diesel,true,'','',new Date(),'');
+    this.car = new Car('','','',this.fuelTypes.Diesel,true,'','',new Date(),'');
     this.keys = Object.keys(this.fuelTypes).filter(k => !isNaN(Number(k)));
    
   }

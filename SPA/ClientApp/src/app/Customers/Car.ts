@@ -1,19 +1,20 @@
 import { Customer } from "./Customer";
 
 export class CustomerCars extends Customer {
-    Cars:Car[];
+    cars:Car[];
  
 
     constructor(firstName: string, lastName: string, phone:string,cars?:Car[],oId?: string ) {
         if(oId)
         oId = '';
         super(oId,firstName,lastName,phone)
-        this.Cars = cars;
+        this.cars = cars;
     }
 
 }
 
 export class Car {
+    oId:string;
     brand: string;
     engine: string;      
     fuelType: FuelTypes;
@@ -26,53 +27,54 @@ export class Car {
 
  
 
-    constructor(Brand: string, Engine: string, FuelType: FuelTypes, ManualGearbox:boolean, Model: string, NumberPlate: string, ProductionDate: Date,VinNo: string, CarHistories?: CarHistory[], ) {
-        this.brand = Brand;
-        this.engine = Engine;
-        this.fuelType = FuelType;
-        this.manualGearbox = ManualGearbox;   
-        this.model = Model;
-        this.numberPlate = NumberPlate;
-        this.productionDate = ProductionDate;
-        this.vinNo = VinNo;   
-        this.carHistories =CarHistories;
+    constructor(oId:string,brand: string, engine: string, fuelType: FuelTypes, manualGearbox:boolean, model: string, numberPlate: string, productionDate: Date,vinNo: string, carHistories?: CarHistory[], ) {
+        this.oId = oId;
+        this.brand = brand;
+        this.engine = engine;
+        this.fuelType = fuelType;
+        this.manualGearbox = manualGearbox;   
+        this.model = model;
+        this.numberPlate = numberPlate;
+        this.productionDate = productionDate;
+        this.vinNo = vinNo;   
+        this.carHistories =carHistories;
     }
 
 }
 
 export class CarHistory {
-    StartDate: Date;
-    EndDate?: Date;      
-    Cost: Number;
-    Parts: Part[];
-    Comment: string;
-    OrderStatus:OrderStatus;
+    startDate: Date;
+    endDate?: Date;      
+    cost: number;
+    parts?: Part[];
+    comment: string;
+    orderStatus:OrderStatus;
 
  
 
-    constructor(StartDate: Date, Cost: number, Parts: Part[],Comment:string,OrderStatus:OrderStatus, EndDate?:Date ) {
-        this.StartDate = StartDate;
-        this.EndDate = EndDate;
-        this.Cost = Cost;
-        this.Parts = Parts;  
-        this.Comment = Comment;
-        this.OrderStatus = OrderStatus; 
+    constructor(startDate: Date, cost: number, comment:string,orderStatus:OrderStatus, endDate?:Date,parts?: Part[] ) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.cost = cost;
+        this.parts = parts;  
+        this.comment = comment;
+        this.orderStatus = orderStatus; 
     }
 
 }
 
 export class Part {
-    PartName: string;
-    Brand: string;      
-    CatalogNumber: string;
-    Qty: number;
+    partName: string;
+    brand: string;      
+    catalogNumber: string;
+    qty: number;
  
 
-    constructor(PartName: string, Brand: string, CatalogNumber: string, Qty:number ) {
-        this.PartName = PartName;
-        this.Brand = Brand;
-        this.CatalogNumber = CatalogNumber;
-        this.Qty = Qty;   
+    constructor(partName: string, brand: string, catalogNumber: string, qty:number ) {
+        this.partName = partName;
+        this.brand = brand;
+        this.catalogNumber = catalogNumber;
+        this.qty = qty;   
     }
 
     

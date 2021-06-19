@@ -41,7 +41,9 @@ export class CarsComponent implements OnInit {
   {
     this.http.get<CustomerCars>(this.baseUrl+'api/Users/' + this.id + '/details').subscribe(result => {
       this.customers = result;
-      this.dataSource = new MatTableDataSource(Array.from(this.customers.Cars));
+      console.log(this.customers.cars);
+      this.dataSource = new MatTableDataSource(Array.from(this.customers.cars));
+      console.log(this.dataSource);
       this.dataSource.paginator = this.paginator;  
     }, error => console.error(error));
   }
@@ -95,7 +97,8 @@ export class DeleteCarDialog {
     console.dir(car);
     this.dialogRef.close();
     if (car) {
-      this.http.delete<CustomerCars>(this.baseUrl + 'api/Cars/' + this.id + '/car/'+car.numberPlate).subscribe(result => {
+      console.log
+      this.http.delete<CustomerCars>(this.baseUrl + 'api/Cars/' + this.id + '/car/'+car.oId).subscribe(result => {
       }, error => console.error(error));
     } else {
       alert("Car not found");

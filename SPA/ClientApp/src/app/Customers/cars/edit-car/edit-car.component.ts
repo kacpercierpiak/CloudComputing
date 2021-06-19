@@ -23,14 +23,14 @@ export class EditCarComponent implements OnInit {
 
   fuelTypes: typeof FuelTypes = FuelTypes;
   id:string;
-  no:string;
+  carId:string;
   keys: string[] = [];
 
   constructor(private http: HttpClient,  @Inject('BASE_URL') private baseUrl: string,private route: ActivatedRoute,private router: Router) { 
    
     this.keys = Object.keys(this.fuelTypes).filter(k => !isNaN(Number(k)));
     this.id = this.route.snapshot.paramMap.get('id');
-    this.no = this.route.snapshot.paramMap.get('no');
+    this.carId = this.route.snapshot.paramMap.get('carId');
    
    
   }
@@ -40,7 +40,7 @@ export class EditCarComponent implements OnInit {
   }
   ngAfterViewInit()
   {
-    this.http.get<Car>(this.baseUrl+'api/Cars/' + this.id + '/car/' + this.no).subscribe(result => {
+    this.http.get<Car>(this.baseUrl+'api/Cars/' + this.id + '/car/' + this.carId).subscribe(result => {
       this.brand = result.brand;
       this.engine = result.engine;
       this.selected = result.fuelType.toString();
@@ -56,7 +56,7 @@ export class EditCarComponent implements OnInit {
 
   public onSubmit() {
     
-    this.http.put<Car>(this.baseUrl+'api/Cars/' + this.id + '/car/'+this.no,new Car(this.brand,this.engine,Object.keys(FuelTypes).indexOf(this.selected),this.manualGearbox,this.model,this.numberPlate,this.productionDate,this.vinNo)).subscribe(result => {
+    this.http.put<Car>(this.baseUrl+'api/Cars/' + this.id + '/car/'+this.carId,new Car(this.carId,this.brand,this.engine,Object.keys(FuelTypes).indexOf(this.selected),this.manualGearbox,this.model,this.numberPlate,this.productionDate,this.vinNo)).subscribe(result => {
        this.router.navigate(["/cars/"+this.id]);
      }, error => console.error(error));
    }

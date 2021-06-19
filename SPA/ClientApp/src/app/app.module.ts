@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { OrdersComponent } from './orders/orders.component';
+import { OrdersComponent,DeleteOrderDialog } from './orders/orders.component';
 import { CustomersComponent,DeleteCustomerDialog } from './Customers/Customers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
@@ -23,11 +23,13 @@ import { AddcarComponent } from './Customers/cars/addcar/addcar.component';
 import {MatSelectModule} from '@angular/material/select';
 import { EditCustomerComponent } from './Customers/edit-customer/edit-customer.component';
 import { AddCustomerComponent } from './Customers/add-customer/add-customer.component';
+import { AddOrderComponent } from './orders/add-order/add-order.component';
+import { EditOrderComponent } from './orders/edit-order/edit-order.component';
 
 
 
 @NgModule({
-  entryComponents:[DeleteCarDialog,DeleteCustomerDialog],
+  entryComponents:[DeleteCarDialog,DeleteCustomerDialog,DeleteOrderDialog],
   declarations: [
     AppComponent,
     NavMenuComponent,
@@ -39,7 +41,10 @@ import { AddCustomerComponent } from './Customers/add-customer/add-customer.comp
     DeleteCustomerDialog,
     AddcarComponent,
     EditCustomerComponent,
-    AddCustomerComponent
+    AddCustomerComponent,
+    DeleteOrderDialog,
+    AddOrderComponent,
+    EditOrderComponent
     
   ],
   imports: [
@@ -59,10 +64,12 @@ import { AddCustomerComponent } from './Customers/add-customer/add-customer.comp
       { path: '', component: OrdersComponent, pathMatch: 'full' },
       { path: 'customers', component: CustomersComponent },
       { path: 'cars/:id', component:CarsComponent,pathMatch: 'full'},
-      { path: 'editCar/:id/:no', component:EditCarComponent,pathMatch: 'full'},
+      { path: 'editCar/:id/:carId', component:EditCarComponent,pathMatch: 'full'},
       { path: 'addCar/:id', component:AddcarComponent,pathMatch: 'full'},
       { path: 'editCustomer/:id', component:EditCustomerComponent,pathMatch: 'full'},
-      { path: 'addCustomer', component:AddCustomerComponent,pathMatch: 'full'}
+      { path: 'addCustomer', component:AddCustomerComponent,pathMatch: 'full'},
+      { path: 'addOrder', component:AddOrderComponent,pathMatch: 'full'}
+      
       
 
     ]),

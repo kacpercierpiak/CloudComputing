@@ -12,14 +12,14 @@ namespace SPA.Models.DTO
     public class User : UserDto
     {
         [BsonId]        
-        public ObjectId _id { get; set; }
-        [BsonIgnore]
-        public new string OId { get => _id.ToString(); }       
+        public ObjectId _id { get; set; }   
+        public new string OId { get => _id.ToString(); set => _ = value; }       
     }
 
 
     public class UserDto
     {
+        [BsonIgnore]
         [JsonProperty("_id")]
         public string OId{ get; set; }
         public string Phone { get; set; }
@@ -35,7 +35,7 @@ namespace SPA.Models.DTO
 
     public class UserCarDto : UserDto
     {
-        public List<Car> Cars { get; set; }
+        public List<CarDto> Cars { get; set; }
     }
 
 
