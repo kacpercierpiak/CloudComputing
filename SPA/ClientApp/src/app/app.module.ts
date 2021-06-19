@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { OrdersComponent,DeleteOrderDialog } from './orders/orders.component';
-import { CustomersComponent,DeleteCustomerDialog } from './Customers/Customers.component';
+import { CustomersComponent,DeleteCustomerDialog } from './Customers/customers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule  } from '@angular/material';
