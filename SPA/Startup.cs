@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SPA.Services;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
+using System;
 
 namespace SPA
 {
@@ -20,6 +24,18 @@ namespace SPA
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200");
+                    });
+            });
+
+
+            services.AddTransient<IDbService, DBService>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -46,6 +62,7 @@ namespace SPA
             }
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

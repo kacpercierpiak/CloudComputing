@@ -14,6 +14,6 @@ namespace SPA.Services
         {
             _usersRepository = new UsersRepository();
         }
-        public List<User> GetUsers() { return _usersRepository.GetUsers(); }
+        public List<User> GetUsers() { return null; }
     }
 }
