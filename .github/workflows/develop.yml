@@ -30,3 +30,4 @@ jobs:
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           usedocker: true
           appdir: "SPA" # <- This will point to the api folder in your project  
+          

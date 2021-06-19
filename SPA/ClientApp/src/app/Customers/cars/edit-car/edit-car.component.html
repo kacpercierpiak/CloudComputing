@@ -1,0 +1,59 @@
+<div class="container">
+    <h1>Edit Car</h1>
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Brand</mat-label>
+            <input type="text" [(ngModel)]="brand" matInput >
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Model</mat-label>
+            <input type="text" [(ngModel)]="model" matInput >
+        </mat-form-field>
+    </p>   
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>VinNo</mat-label>
+            <input type="text" [(ngModel)]="vinNo" matInput >
+        </mat-form-field>
+    </p>  
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Engine</mat-label>
+            <input type="text" [(ngModel)]="engine" matInput >
+        </mat-form-field>
+    </p>   
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>FuelType</mat-label>
+            <mat-select placeholder="Select Role" [(value)]="selected">
+                <mat-option *ngFor="let key of keys; let i = index" [value]="key">
+                     {{fuelTypes[i]}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>   
+    <p>
+        
+            <mat-label>ManualGearbox</mat-label>
+            <mat-checkbox class="example-margin" [(ngModel)]="manualGearbox" ></mat-checkbox>
+       
+    </p> 
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>NumberPlate</mat-label>
+            <input type="text" [(ngModel)]="numberPlate" matInput >
+        </mat-form-field>
+    </p>   
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>ProductionDate</mat-label>
+            <input type="date" matInput [(ngModel)]="productionDate">
+        </mat-form-field>
+    </p>
+    <p>
+        <button mat-raised-button (click)="onSubmit()" type="button">Save</button>
+        <button mat-raised-button routerLink="/cars/{{id}}">Cancel</button>
+    </p>
+</div>

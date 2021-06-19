@@ -1,6 +1,6 @@
 using System;
 using Xunit;
-using ConfigService;
+using WebAPI.Repositories;
 
 namespace WebAPI.Test
 {

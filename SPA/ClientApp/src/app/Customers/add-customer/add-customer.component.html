@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>New Customer</h1>
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>FirstName</mat-label>
+            <input type="text" [(ngModel)]="firstName" matInput >
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>LastName</mat-label>
+            <input type="text" [(ngModel)]="lastName" matInput >
+        </mat-form-field>
+    </p>   
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input type="text" [(ngModel)]="phone" matInput >
+        </mat-form-field>
+    </p>  
+    <p>
+        <button mat-raised-button (click)="onSubmit()" type="button">Create</button>
+        <button mat-raised-button routerLink="/customers">Cancel</button>
+    </p>
+</div>
