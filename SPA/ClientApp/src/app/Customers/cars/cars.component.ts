@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MatPaginator, MatTableDataSource, MAT_DIALOG_DATA } from '@angular/material';
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
-import { Car, CustomerCars } from '../Car';
+import { Car, CustomerCars, FuelTypes } from '../Car';
 
 
 
@@ -16,6 +16,7 @@ export class CarsComponent implements OnInit {
 
   public customers: CustomerCars;
   dataSource = new MatTableDataSource<Car>();
+  fuelType : typeof  FuelTypes = FuelTypes;
  
 
   id:string;

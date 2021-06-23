@@ -68,8 +68,8 @@ import { EditOrderComponent } from './orders/edit-order/edit-order.component';
       { path: 'addCar/:id', component:AddcarComponent,pathMatch: 'full'},
       { path: 'editCustomer/:id', component:EditCustomerComponent,pathMatch: 'full'},
       { path: 'addCustomer', component:AddCustomerComponent,pathMatch: 'full'},
-      { path: 'addOrder', component:AddOrderComponent,pathMatch: 'full'}
-      
+      { path: 'addOrder', component:AddOrderComponent,pathMatch: 'full'},
+      { path: 'editOrder/:id', component:EditOrderComponent,pathMatch: 'full'}
       
 
     ]),
