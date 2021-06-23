@@ -1,1 +1,29 @@
-<p>edit-order works!</p>
+<div class="container">
+
+    <h1>Edit Order</h1>
+    <h6>{{name}}</h6><h6>{{brand}} {{model}} {{numberPlate}}</h6>
+
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select placeholder="Select status" [(value)]="selected">
+                <mat-option *ngFor="let key of keys; let i = index" [value]="key">
+                     {{orderStatus[i]}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p> 
+
+    <p>        
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matInput rows="5"  [(ngModel)]="description" ></textarea>
+        </mat-form-field>
+    </p> 
+ 
+
+    <p>
+        <button mat-raised-button (click)="onSubmit()" type="button">Save</button>
+        <button mat-raised-button routerLink="/">Cancel</button>
+    </p>
+</div>

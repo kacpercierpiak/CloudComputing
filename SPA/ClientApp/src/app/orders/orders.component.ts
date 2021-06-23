@@ -6,17 +6,25 @@ import { environment } from '../../environments/environment.prod';
 import { Car, OrderStatus, Part } from '../Customers/Car';
 import { Customer } from '../Customers/Customer';
 import { Order } from './Order';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class OrdersComponent{
 
   dataSource = new MatTableDataSource<OrderDto>();
   response: Order[];
-
+  expandedElement: OrderDto | null;
 
   displayedColumns: string[] = ['ProjectId', 'CustomerName', 'NumberPlate', 'Brand','Model','startDate','endDate','status','settings'];
 
@@ -32,7 +40,7 @@ export class OrdersComponent{
   refreshData()
   {
     this.http.get<Order[]>(this.baseUrl+'api/Orders').subscribe((result: Order[]) => {
-      
+      console.log(result);
     
       this.getDetails(result)    ;
 
@@ -127,7 +135,8 @@ export class OrderDto  extends Order
   name:string;
   brand:string;
   model:string;
-  numberPlate:string;
+  numberPlate: string;
+  status: string;
 
   constructor(order:Order,name:string,brand:string,model:string,numberPlate:string) {
     super(order.oId,order.carOId,order.startDate,order.cost,order.comment,order.orderStatus,order.userOId,order.endDate,order.parts);
@@ -135,6 +144,7 @@ export class OrderDto  extends Order
     this.brand = brand;
     this.model = model;
     this.numberPlate = numberPlate;
+    this.status = OrderStatus[this.orderStatus];
 }
 }
 

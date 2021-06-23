@@ -96,8 +96,9 @@ namespace SPA.Controllers
         [HttpPut()]
         public async Task<IActionResult> UpdateUser([FromBody] UserDto user)
         {           
-            var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(user.OId));           
-            await _collection.ReplaceOneAsync(filter, user.ToBsonDocument());
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(user.OId));
+            var update = Builders<BsonDocument>.Update.Set("FirstName", user.FirstName).Set("LastName", user.LastName).Set("Phone", user.Phone);
+            await _collection.UpdateOneAsync(filter, update);
             return Ok();
         }
 
