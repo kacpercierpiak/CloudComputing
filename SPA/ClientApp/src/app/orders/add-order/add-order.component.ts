@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Car, CustomerCars } from 'src/app/Customers/Car';
 import { Customer } from 'src/app/Customers/Customer';
+import { Order } from '../Order';
 
 @Component({
   selector: 'app-add-order',
@@ -50,7 +51,7 @@ export class AddOrderComponent implements OnInit {
 
   public onSubmit() {
     
-    this.http.post<Customer>(this.baseUrl+'api/Orders/' , {UserOId: this.customerSelect, CarOId: this.carSelect,comment:this.description}).subscribe(result => {
+    this.http.post<Order>(this.baseUrl+'api/Orders/' , {UserOId: this.customerSelect, CarOId: this.carSelect,comment:this.description}).subscribe(result => {
       this.router.navigate(["/"]);
     }, error => console.error(error));
   }

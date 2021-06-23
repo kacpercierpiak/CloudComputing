@@ -49,10 +49,11 @@ namespace SPA.Controllers
             var dotNetObjList = t.ConvertAll(BsonTypeMapper.MapToDotNetValue);
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(dotNetObjList);
 
-            var myObject = Newtonsoft.Json.JsonConvert.DeserializeObject<OrderDto>(json);
+            var myObject = Newtonsoft.Json.JsonConvert.DeserializeObject<List<OrderDto>>(json);
 
-           
-                return Ok(myObject);
+            if (myObject.Count() < 1)
+                return NotFound();
+                return Ok(myObject[0]);
            
         }
 
@@ -66,10 +67,14 @@ namespace SPA.Controllers
             _collection.InsertOneAsync(order.ToBsonDocument());
             return Ok();
         }
-        [HttpPut()]
-        public async Task<IActionResult> UpdateOrder([FromBody] Order order)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateOrder([FromBody] OrderDto order, string id)
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(order.OId));
+            if (order.OrderStatus == OrderStatus.Done)
+                order.EndDate = DateTime.UtcNow;
+            else
+                order.EndDate = null;
+           var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(id));
             await _collection.ReplaceOneAsync(filter, order.ToBsonDocument());
             return Ok();
         }
